@@ -1,5 +1,6 @@
 from datetime import datetime
 from application import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -10,6 +11,12 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+
+    def set_hash(self, password):
+        self.password_hash = generate_password_hash(password)
+    
+    def check_hash(self, password):
+        return check_password_hash(self.password_hash, password)
 
 class ShoppingItems(db.Model):
     id = db.Column(db.Integer, primary_key=True)
