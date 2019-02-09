@@ -1,0 +1,1 @@
+This applications will make your everyday life a little bit easier
