@@ -1,21 +1,26 @@
-<!-- Parent Template -->
-<!DOCTYPE html>
 <html>
-<head>
-    {% block head %}
-     <title>{% block title %}{% endblock %}</title>
-
-     {% endblock %}
-</head>
-<body>
-    {% block navbar %}
-        
-    {% endblock %}
-
-    {% block content %}
-    
-    
-    {% endblock %}
-</body>
-
+    <head>
+      {% if title %}
+      <title>{{ title }} - ShoppingApp</title>
+      {% else %}
+      <title>Welcome to ShoppingApp</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Microblog: <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('login') }}">login</a></div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>
+                {{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
 </html>

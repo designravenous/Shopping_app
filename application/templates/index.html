@@ -1,18 +1,13 @@
-{% extends 'bootstrap/base.html' %}
-{% block title %} Let's Do This{% endblock %}
-{% block navbar %}
-<nav class="navbar navbar-expand-sm navbar-inverse bg-info ">
-    <p style="margin-left: 2%; color:white"><small>Welcome, {{ user }}</small></p>
-    <a href= "{{ url_for('index') }}">Home</a>
-</nav>
+{% extends "base.html" %}
 
-{% endblock %}
 {% block content%}
+
 <div class="container">
     <div class="row">
-        <h1>POSTS</h1>
+        <h1>Welcome {{ user }}</h1>
+        <h2>POSTS</h2>
         {% for post in posts %}
-            <p>User: {{ post.user }} wants {{ post.item }}</p>
+            <p>User: {{ post.user }} wants <b>{{ post.item }}</b></p>
         {% endfor %}
     </div>
 </div>
