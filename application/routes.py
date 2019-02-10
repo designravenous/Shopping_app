@@ -1,28 +1,18 @@
 from application import app, bootstrap
 from flask import render_template, url_for, flash, redirect, request
 from application.forms import LoginForms
-from application.models import User
+from application.models import User, ShoppingItems
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 
 
 @app.route('/')
 @app.route('/index')
-@login_required
 def index():
-    user = 'Peter S Holgersson'
-    posts = [{
-        'item':'Kaffe',
-        'user':'Sigge',
-        'quantity':2
-    },
-    {
-        'item':'sill',
-        'user':'Roger',
-        'quantity':3
-    }
-    ]
-    return render_template('index.html', user=user, posts=posts)
+    fetch_id = current_user.id
+    posts = ShoppingItems.query.filter_by(user_id=current_user.id)
+
+    return render_template('index.html', posts=posts)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -44,4 +34,4 @@ def login():
 @app.route('/logout')
 def logout():
     login_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))

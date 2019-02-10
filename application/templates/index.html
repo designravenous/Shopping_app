@@ -4,10 +4,10 @@
 
 <div class="container">
     <div class="row">
-        <h1>Welcome {{ user }}</h1>
+        <h1>Welcome {{ current_user.username }}</h1>
         <h2>POSTS</h2>
         {% for post in posts %}
-            <p>User: {{ post.user }} wants <b>{{ post.item }}</b></p>
+            <p>User: {{ post.author.username }}, wants {{ post.quantity }} <b>{{ post.item }} added: {{ post.added_to_chart }} added: {{ post.timestamp }} id: {{ post.id }}</b></p>
         {% endfor %}
     </div>
 </div>
