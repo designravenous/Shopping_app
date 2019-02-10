@@ -1,8 +1,8 @@
 from datetime import datetime
-from application import db
+from application import db, app, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from application import login
+
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -31,8 +31,8 @@ class ShoppingItems(db.Model):
     def __repr__(self):
         return '<Item {}, Quantity {}, added to chart? {}>'.format(self.item, self.quantity, self.added_to_chart)
 
-#function is needed to keep track of logged in user, the ID that is passed in the function is a string.  
-@app.login.user_loader
+#function is needed to keep track of logged in user, the ID that is passed in the function is a string 
+@login.user_loader
 def load_user(id):
     return User.query.get(int(id))
 
