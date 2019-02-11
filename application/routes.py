@@ -8,6 +8,7 @@ from werkzeug.urls import url_parse
 
 @app.route('/')
 @app.route('/index')
+@login_required
 def index():
     fetch_id = current_user.id
     posts = ShoppingItems.query.filter_by(user_id=current_user.id)
@@ -33,5 +34,5 @@ def login():
 
 @app.route('/logout')
 def logout():
-    login_user()
+    logout_user()
     return redirect(url_for('login'))
