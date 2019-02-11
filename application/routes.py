@@ -1,6 +1,6 @@
-from application import app, bootstrap
+from application import app, bootstrap, db
 from flask import render_template, url_for, flash, redirect, request
-from application.forms import LoginForms
+from application.forms import LoginForms, RegistrationForm
 from application.models import User, ShoppingItems
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -36,3 +36,18 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_hash(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('New user: {}, is registered'.format(form.username.data))
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form=form)
+
