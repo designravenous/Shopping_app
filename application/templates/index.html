@@ -42,6 +42,7 @@
         {% endfor %}
         </tbody>
         </table>
+        {% if added_to_chart|length >= 1 %}
         <h5 class="col-xs-5">Already Added:</h5>
         <table class="table table-striped">
             <tbody>
@@ -56,6 +57,7 @@
                     </tr>
             {% endif %}
     {% endfor %}
+    {% endif %}
     </tbody>
     </table>
     <hr>
