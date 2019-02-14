@@ -18,6 +18,7 @@
                 </div>
             </br>
         </br>
+        {% if not_added|length >= 1 or added_to_chart|length >= 1%}
         <table class="table table-striped">
                 <div class="col-xs-12">
             <tread>
@@ -62,6 +63,9 @@
     </table>
     <hr>
     <h1 class="col-xs-4"></h1><a href="#" type="button" class="col-xs-4 btn btn-success"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete Added</a><h1 class="col-xs-4"></h1>
+    {% else %}
+    <h4>Add Groceries To Your ShoppingBag </h4>
+    {% endif %}
     </div>
 </div>
 {% endblock %}
