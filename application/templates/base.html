@@ -1,33 +1,36 @@
-<html>
-    <head>
-      {% if title %}
-      <title>{{ title }} - ShoppingApp</title>
-      {% else %}
-      <title>Welcome to ShoppingApp</title>
-      {% endif %}
-    </head>
-    <body>
-        <div>
-            Shopping Bag:
-            <a href="{{ url_for('index') }}">Home</a>
-            {% if current_user.is_anonymous %}
-            <a href="{{ url_for('login') }}">Login</a>
-            {% else %}
-            <a href="{{ url_for('logout') }}">Logout</a>
-            {% endif %}
-        </div>
-        <hr>
+{% extends 'bootstrap/base.html' %}
+{% block title %}
+    {% if title %}{{ title }}{% else %}ShoppingApp{% endif %}
+{% endblock %}
+{% block navbar %}
+<nav class="navbar navbar-expand-sm navbar-inverse bg-info ">
+    {% if user %}<p style="margin-left: 2%; color:white"><small>Welcome, {{ user }}</small></p>{% endif %}
+
+</nav>
+{% endblock %}
+{% block content %}
+{% block error_msg %}
+    <div class="container">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <ul>
             {% for message in messages %}
-            <li>
-                {{ message }}
-            </li>
+            <div class="alert alert-info" role="alert">{{ message }}</div>
             {% endfor %}
-        </ul>
         {% endif %}
         {% endwith %}
-        {% block content %}{% endblock %}
-    </body>
-</html>
+        <div class="row">
+                <div class="text-center">
+                        <a href="{{ url_for('index') }}">Home</a>
+                        {% if current_user.is_anonymous %}
+                        <a href="{{ url_for('login') }}">Login</a>
+                        {% else %}
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                        <hr>
+                        {% endif %}
+                    </div>
+        {% endblock %}
+        {# application content needs to be provided in the app_content block #}
+        {% block app_content %}{% endblock %}
+    </div>
+    </div>
+{% endblock %}

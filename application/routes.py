@@ -11,9 +11,17 @@ from werkzeug.urls import url_parse
 @login_required
 def index():
     fetch_id = current_user.id
+    user = current_user.username
+    added_to_chart = []
+    not_added = []
     posts = ShoppingItems.query.filter_by(user_id=current_user.id)
+    for p in posts:
+        if p.added_to_chart == True:
+            added_to_chart.append(p)
+        else:
+            not_added.append(p)
 
-    return render_template('index.html', posts=posts)
+    return render_template('index.html', added_to_chart=added_to_chart, not_added=not_added,user=user)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -47,7 +55,7 @@ def register():
         user.set_hash(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('New user: {}, is registered'.format(form.username.data))
+        flash('New user: {}, is registered. Go ahead and login!'.format(form.username.data))
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
