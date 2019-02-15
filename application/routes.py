@@ -59,3 +59,14 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+@app.route('/basket_status/<item_id>')
+@login_required
+def basket_status(item_id):
+    item_to_change = ShoppingItems.query.filter_by(id=item_id).first()
+    if item_to_change.added_to_chart == False:
+        item_to_change.added_to_chart = True
+    else:
+        item_to_change.added_to_chart = False
+    db.session.commit()
+    return redirect(url_for('index'))
+

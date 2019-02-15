@@ -31,12 +31,12 @@
         {% for post in not_added %}
             {% if post.quantity == 1 %}
                 <tr>
-                    <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><a href="#" style="color:black; text-decoration: none;">{{ post.item.upper() }}</a></td>
+                    <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><a href={{ url_for('basket_status', item_id = post.id) }}  style="color:black; text-decoration: none;">{{ post.item.upper() }}</a></td>
                     <td class="text-center visible-md visible-lg" style="font-family: 'Major Mono Display', monospace;">{{ post.author.username }}</td>
                 </tr>
             {% else %}
                 <tr>
-                    <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><a href="#" style="color:black; text-decoration: none;">{{ post.item.upper() }}({{ post.quantity }})</a></td>
+                    <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><a href={{ url_for('basket_status', item_id = post.id) }}  style="color:black; text-decoration: none;">{{ post.item.upper() }}({{ post.quantity }})</a></td>
                     <td class="text-center visible-md visible-lg" style="font-family: 'Major Mono Display', monospace;">{{ post.author.username }}</td>
                 </tr>
                 {% endif %}
@@ -50,11 +50,11 @@
             {% for goodie in added_to_chart %}
                 {% if goodie.quantity == 1 %}
                     <tr class="success">
-                    <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><del><a href="#" style="color:black; text-decoration: none;">{{ goodie.item.upper() }}</a></del></td>
+                    <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><del><a href= {{ url_for('basket_status', item_id = goodie.id) }} style="color:black; text-decoration: none;">{{ goodie.item.upper() }}</a></del></td>
                     </tr>
                 {% else %}
                     <tr class="success">
-                    <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><del><a href="#" style="color:black; text-decoration: none;">{{ goodie.item.upper() }}({{ goodie.quantity }})</a></del></td>
+                    <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><del><a href= {{ url_for('basket_status', item_id = goodie.id) }} style="color:black; text-decoration: none;">{{ goodie.item.upper() }}({{ goodie.quantity }})</a></del></td>
                     </tr>
             {% endif %}
     {% endfor %}
