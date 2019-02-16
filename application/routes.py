@@ -96,3 +96,13 @@ def delete_added_items():
     db.session.commit()
     return redirect(url_for('index'))
 
+@app.route('/delete_all_items')
+@login_required
+def delete_all_items():
+    users = User.query.filter_by(id=current_user.id).first()
+    all_items = ShoppingItems.query.filter_by(user_id=users.id)
+    for item in all_items:
+        db.session.delete(item)
+    db.session.commit()
+    return redirect(url_for('index'))
+
