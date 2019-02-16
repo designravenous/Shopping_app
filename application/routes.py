@@ -74,6 +74,7 @@ def basket_status(item_id):
 @login_required
 def add_new_item():
     form = Add_Item_Form()
+    user = current_user.username
     current_user_id = User.query.filter_by(id=current_user.id).first()
     if form.validate_on_submit():
         added = form.item.data
@@ -82,7 +83,7 @@ def add_new_item():
         db.session.commit()
         flash('Item {} added'.format(added))
         return redirect(url_for('add_new_item'))
-    return render_template('add_item.html', title="Add Item", form=form)
+    return render_template('add_item.html', title="Add Item", form=form, user=user)
 
 @app.route('/delete_added_items')
 @login_required
