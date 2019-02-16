@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
+from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, optional
 from application.models import User
 
 class LoginForms(FlaskForm):
@@ -25,3 +25,8 @@ class RegistrationForm(FlaskForm):
         u = User.query.filter_by(email=email.data).first()
         if u is not None:
             raise ValidationError('Account with that email address is already created')
+
+class Add_Item_Form(FlaskForm):
+    item = StringField('New Item:', validators=[DataRequired()])
+    quantity = SelectField('Quantity:', choices=[(1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9), (10,10)], coerce=int, default=1)
+    submit = SubmitField('Add Item')

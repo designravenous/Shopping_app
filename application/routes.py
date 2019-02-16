@@ -1,6 +1,6 @@
 from application import app, bootstrap, db
 from flask import render_template, url_for, flash, redirect, request
-from application.forms import LoginForms, RegistrationForm
+from application.forms import LoginForms, RegistrationForm, Add_Item_Form
 from application.models import User, ShoppingItems
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -69,4 +69,18 @@ def basket_status(item_id):
         item_to_change.added_to_chart = False
     db.session.commit()
     return redirect(url_for('index'))
+
+@app.route('/add_item', methods=['GET', 'POST'])
+@login_required
+def add_new_item():
+    form = Add_Item_Form()
+    current_user_id = User.query.filter_by(id=current_user.id).first()
+    if form.validate_on_submit():
+        added = form.item.data
+        new_item = ShoppingItems(item=form.item.data, quantity=form.quantity.data, user_id=current_user.id)
+        db.session.add(new_item)
+        db.session.commit()
+        flash('Item {} added'.format(added))
+        return redirect(url_for('index'))
+    return render_template('add_item.html', title="Add Item", form=form)
 
