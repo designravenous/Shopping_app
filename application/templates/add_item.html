@@ -1,24 +1,31 @@
 {% extends "base.html" %}
 {% block app_content %}
-<h3>Add Items to Shoppingbag:</h3>
+<div class="form-group col-xs-12"><h3>Add Items to Shoppingbag:</h3></div>
 <form action="" method="POST">
     {{ form.hidden_tag() }}
     <p>
+        <div class="form-group col-xs-12">
         {{ form.item.label }}<br>
         {{ form.item(size=32) }}<br>
+        </div>
         {% for error in form.item.errors %}
         <span style="color:red;">[{{ error }}]</span>
         {% endfor %}
     </p>
     <p>
+        <div class="form-group col-xs-12">
         {{ form.quantity.label }}<br>
         {{ form.quantity }}<br>
+        </div>
         {% for error in form.quantity.errors %}
         <span style="color:red;">[{{ error }}]</span>
         {% endfor %}
     </p>
     <p>
-        <input type="submit" value="Add Item" class="btn btn-default"> <a href= {{ url_for('index') }} type="button" class="btn btn-default">Return To ShoppingBag</a>
+        <div class="form-group col-xs-12">
+        <input type="submit" value="Add Item" class="btn btn-primary"> <a href= {{ url_for('index') }} type="button" class="btn btn-default">Return To ShoppingBag</a>
+        </div>
     </p>
 </form>
+
 {% endblock %}
