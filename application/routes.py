@@ -81,6 +81,6 @@ def add_new_item():
         db.session.add(new_item)
         db.session.commit()
         flash('Item {} added'.format(added))
-        return redirect(url_for('index'))
+        return redirect(url_for('add_new_item'))
     return render_template('add_item.html', title="Add Item", form=form)
 

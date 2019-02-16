@@ -29,4 +29,3 @@ class RegistrationForm(FlaskForm):
 class Add_Item_Form(FlaskForm):
     item = StringField('New Item:', validators=[DataRequired()])
     quantity = SelectField('Quantity:', choices=[(1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9), (10,10)], coerce=int, default=1)
-    submit = SubmitField('Add Item')
