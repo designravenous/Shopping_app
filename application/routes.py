@@ -84,3 +84,14 @@ def add_new_item():
         return redirect(url_for('add_new_item'))
     return render_template('add_item.html', title="Add Item", form=form)
 
+@app.route('/delete_added_items')
+@login_required
+def delete_added_items():
+    users = User.query.filter_by(id=current_user.id).first()
+    all_items = ShoppingItems.query.filter_by(user_id=users.id)
+    for gross in all_items:
+        if gross.added_to_chart == True:
+            db.session.delete(gross)
+    db.session.commit()
+    return redirect(url_for('index'))
+

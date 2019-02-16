@@ -62,7 +62,7 @@
     </tbody>
     </table>
     <hr>
-    <h1 class="col-xs-4"></h1><a href="#" type="button" class="col-xs-4 btn btn-success"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete Added</a><h1 class="col-xs-4"></h1>
+    <h1 class="col-xs-4"></h1><a href={{ url_for('delete_added_items') }} type="button" class="col-xs-4 btn btn-success"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete Added</a><h1 class="col-xs-4"></h1>
     {% else %}
     <h4>Add Groceries To Your ShoppingBag </h4>
     {% endif %}
