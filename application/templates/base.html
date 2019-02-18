@@ -20,7 +20,7 @@
         {% endwith %}
         <div class="row">
                 <div class="text-center">
-                        <a href="{{ url_for('index') }}">Home</a>
+                        <a href="{{ url_for('index') }}">Home</a> &nbsp;|&nbsp;
                         {% if current_user.is_anonymous %}
                         <a href="{{ url_for('login') }}">Login</a>
                         {% else %}
