@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block app_content %}
-<h1>Sign In</h1>
+
+<div class="container">
+    <div class="row">
+            <div class="col-xs-12">
+                    <h1>Sign In</h1>
 <form action="" method="POST" novalidate>
     {{ form.hidden_tag() }}
     <p>
@@ -19,9 +23,11 @@
     </p>
     
     <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-    <p>{{ form.submit() }}</p><br>
+    <input type="submit" value="Sign In" class="btn btn-primary"><br><br>
     <p>New User? <a href="{{ url_for('register') }}">Register Today!</a></p>
     
 </form>
-
+</div>
+</div>
+</div>
 {% endblock %}

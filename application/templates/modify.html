@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block app_content %}
+<div class="container">
+    <div class="row col-xs-12">
+        <h1>Modify</h1>
+        <form action="" method="POST">
+            <div class="form-group">
+                    <label>Item you want to modify:</label><br>
+            <select id="sel1" name="quantity">
+                {% for thing in shopping_items %}
+                <option>{{ thing.item }}</option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+    </div>
+</div>
+
+{% endblock %}
