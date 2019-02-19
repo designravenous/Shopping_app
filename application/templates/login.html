@@ -23,7 +23,7 @@
     </p>
     
     <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-    <input type="submit" value="Sign In" class="btn btn-primary"><br><br>
+    {{ form.submit() }}<br><br>
     <p>New User? <a href="{{ url_for('register') }}">Register Today!</a></p>
     
 </form>
