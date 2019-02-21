@@ -25,6 +25,7 @@
             <tr>
             <th class="text-center"style="font-family: 'Major Mono Display', monospace;">ITEMS</th>
             <th class="text-center visible-md visible-lg"style="font-family: 'Major Mono Display', monospace;">ADDED BY:</th>
+            <th class="text-right"style="font-family: 'Major Mono Display', monospace;"></th>
         </tr>
         </tread>
         <tbody>
@@ -33,11 +34,13 @@
                 <tr>
                     <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><a href={{ url_for('basket_status', item_id = post.id) }}  style="color:black; text-decoration: none;">{{ post.item.upper() }}</a></td>
                     <td class="text-center visible-md visible-lg" style="font-family: 'Major Mono Display', monospace;">{{ post.author.username }}</td>
+                    <td><button type="button" class="btn btn-warning btn-xs" data-toggle="collapse" data-target="#demo" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button></td>
                 </tr>
             {% else %}
                 <tr>
                     <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><a href={{ url_for('basket_status', item_id = post.id) }}  style="color:black; text-decoration: none;">{{ post.item.upper() }}({{ post.quantity }})</a></td>
                     <td class="text-center visible-md visible-lg" style="font-family: 'Major Mono Display', monospace;">{{ post.author.username }}</td>
+                    <td><button type="button" class="btn btn-warning btn-xs btn-right" data-toggle="collapse" data-target="#demo" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button></td>
                 </tr>
                 {% endif %}
         {% endfor %}
