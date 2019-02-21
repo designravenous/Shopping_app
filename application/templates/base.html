@@ -5,7 +5,7 @@
 {% block navbar %}
 {% if current_user.is_anonymous %}
 {% else %}
-<div class="jumbotron" style="margin-bottom: 0px;">
+<div class="jumbotron visible-md visible-lg" style="margin-bottom: 0px;">
  <p style="margin-left: 3%">User logged in: <b>{{ current_user.username }}</b></p>
 </div>
 {% endif %}
