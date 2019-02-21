@@ -18,53 +18,79 @@
                 </div>
             </br>
         </br>
+        {% if not_added|length >= 1 %}
+        <div class="panel panel-primary">
+            <div class="panel-heading">Items</div>
+        </div>
+        {% endif %}
         {% if not_added|length >= 1 or added_to_chart|length >= 1%}
-        <table class="table table-striped">
-                <div class="col-xs-12">
-            <tread>
-            <tr>
-            <th class="text-center"style="font-family: 'Major Mono Display', monospace;">ITEMS</th>
-            <th class="text-center visible-md visible-lg"style="font-family: 'Major Mono Display', monospace;">ADDED BY:</th>
-            <th class="text-right"style="font-family: 'Major Mono Display', monospace;"></th>
-        </tr>
-        </tread>
-        <tbody>
         {% for post in not_added %}
             {% if post.quantity == 1 %}
-                <tr>
-                    <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><a href={{ url_for('basket_status', item_id = post.id) }}  style="color:black; text-decoration: none;">{{ post.item.upper() }}</a></td>
-                    <td class="text-center visible-md visible-lg" style="font-family: 'Major Mono Display', monospace;">{{ post.author.username }}</td>
-                    <td><button type="button" class="btn btn-warning btn-xs" data-toggle="collapse" data-target="#demo" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button></td>
-                </tr>
+                <div class="panel-body text-center" style="font-family: 'Major Mono Display', monospace; border-bottom-width: 1px;" ><a href={{ url_for('basket_status', item_id = post.id) }} class="text-left" style="color:black; text-decoration: none;">{{ post.item.upper() }}</a><button type="button" class="btn btn-warning btn-xs btn-right" data-toggle="collapse" data-target="#{{ post.id }}" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button>
+                </div>
+                <div id="{{ post.id }}" class="collapse panel-body text-center" style="background-color:lightgray; border-radius:3px;">
+                    <form action="" method="POST" style="font-family: 'Major Mono Display">
+                        <label>Item:</label>
+                        <input value="{{ post.item }}"></input>
+                        <label>Quantity</label>
+                        <select>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>&nbsp;
+                        <button type="submit" class="btn btn-primary btn-xs">Update</button>
+                    </form>
+                </div>
             {% else %}
-                <tr>
-                    <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><a href={{ url_for('basket_status', item_id = post.id) }}  style="color:black; text-decoration: none;">{{ post.item.upper() }}({{ post.quantity }})</a></td>
-                    <td class="text-center visible-md visible-lg" style="font-family: 'Major Mono Display', monospace;">{{ post.author.username }}</td>
-                    <td><button type="button" class="btn btn-warning btn-xs btn-right" data-toggle="collapse" data-target="#demo" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button></td>
-                </tr>
+            <div class="panel-body text-center" style="font-family: 'Major Mono Display', monospace; border-bottom-width: 1px;" ><a href={{ url_for('basket_status', item_id = post.id) }} class="text-left" style="color:black; text-decoration: none;">{{ post.item.upper() }}({{ post.quantity }})</a><button type="button" class="btn btn-warning btn-xs btn-right" data-toggle="collapse" data-target="#{{ post.id }}" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button>
+            </div>
+            <div id="{{ post.id }}" class="collapse panel-body text-center" style="background-color:lightgray; border-radius:3px;">
+                <form action="" method="POST" style="font-family: 'Major Mono Display">
+                    <label>Item:</label>
+                    <input value="{{ post.item }}"></input>
+                    <label>Quantity</label>
+                    <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>&nbsp;
+                    <button type="submit" class="btn btn-primary btn-xs">Update</button>
+                </form>
+            </div>
                 {% endif %}
+        
         {% endfor %}
-        </tbody>
-        </table>
+
         {% if added_to_chart|length >= 1 %}
-        <h5 class="col-xs-5">Already Added:</h5>
-        <table class="table table-striped">
-            <tbody>
+        <br>
+        <div class="panel panel-success">
+            <div class="panel-heading">Already Added:</div>
             {% for goodie in added_to_chart %}
                 {% if goodie.quantity == 1 %}
-                    <tr class="success">
-                    <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><del><a href= {{ url_for('basket_status', item_id = goodie.id) }} style="color:black; text-decoration: none;">{{ goodie.item.upper() }}</a></del></td>
-                    </tr>
+                    
+                    <div class="panel-body text-center bg-success border-success" style="font-family: 'Major Mono Display', monospace;"><del><a href= {{ url_for('basket_status', item_id = goodie.id) }} style="color:black; text-decoration: none;">{{ goodie.item.upper() }}</a><button type="button" class="btn btn-success btn-xs btn-right" data-toggle="collapse" data-target="#" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button></del></div>
+                    
                 {% else %}
-                    <tr class="success">
-                    <td class="text-center" style="font-family: 'Major Mono Display', monospace;"><del><a href= {{ url_for('basket_status', item_id = goodie.id) }} style="color:black; text-decoration: none;">{{ goodie.item.upper() }}({{ goodie.quantity }})</a></del></td>
-                    </tr>
+                <div class="panel-body text-center bg-success border-success" style="font-family: 'Major Mono Display', monospace;"><del><a href= {{ url_for('basket_status', item_id = goodie.id) }} style="color:black; text-decoration: none;">{{ goodie.item.upper() }}({{ goodie.quantity }})</a><button type="button" class="btn btn-success btn-xs btn-right" data-toggle="collapse" data-target="#" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button></del></div>
             {% endif %}
     {% endfor %}
     {% endif %}
-    </tbody>
-    </table>
-    <h1 class="col-xs-4"></h1><a href={{ url_for('delete_added_items') }} type="button" class="col-xs-4 btn btn-success"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete Added</a><h1 class="col-xs-4"></h1>
+    </div>    </div>
+    <h1 class="col-xs-4"></h1><a href={{ url_for('delete_added_items') }} type="button" class="col-xs-4 btn btn-success"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete</a><h1 class="col-xs-4"></h1>
     {% else %}
     <h4>Add Groceries To Your ShoppingBag </h4>
     {% endif %}
