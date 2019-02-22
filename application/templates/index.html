@@ -11,7 +11,6 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href= {{ url_for('add_new_item') }} ><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add Item</a></li>
-                        <li><a href= "#"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Modify Item</a></li>
                         <li class="divider"></li>
                         <li><a href= {{ url_for('delete_all_items') }}><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete All Items</a></li>
                     </ul>
@@ -46,24 +45,18 @@
             <div class="panel-body text-left" style="font-family: 'Major Mono Display', monospace; border-bottom-width: 1px;" ><a href={{ url_for('basket_status', item_id = post.id) }} class="text-left" style="color:black; text-decoration: none;">{{ post.item.upper() }}({{ post.quantity }})</a><button type="button" class="btn btn-warning btn-xs btn-right" data-toggle="collapse" data-target="#{{ post.id }}" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button>
             </div>
             <div id="{{ post.id }}" class="collapse panel-body text-center" style="background-color:lightgray; border-radius:3px;">
-                <form action="" method="POST" style="font-family: 'Major Mono Display">
-                    <label>Item:</label>
-                    <input value="{{ post.item }}"></input>
-                    <label>Quantity</label>
-                    <select>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                    </select>&nbsp;
-                    <button type="submit" class="btn btn-primary btn-xs">Update</button>
-                </form>
+                <form action="/modify/{{ post.id }}" method="POST">
+                    <div class="form-row align-items-center">
+                            <div class="col-auto">
+                                <label>Item</label>
+                                {{ form.item(size=20, value=post.item) }}
+                                {{ form.quantity.label }}
+                                {{ form.quantity }}
+                               {{ form.submit() }}
+                            </div>
+                          </div>
+
+            </form>
             </div>
                 {% endif %}
         
@@ -76,10 +69,10 @@
             {% for goodie in added_to_chart %}
                 {% if goodie.quantity == 1 %}
                     
-                    <div class="panel-body text-left bg-success border-success" style="font-family: 'Major Mono Display', monospace;"><del><a href= {{ url_for('basket_status', item_id = goodie.id) }} style="color:black; text-decoration: none;">{{ goodie.item.upper() }}</a><button type="button" class="btn btn-success btn-xs btn-right" data-toggle="collapse" data-target="#" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button></del></div>
+                    <div class="panel-body text-left bg-success border-success" style="font-family: 'Major Mono Display', monospace;"><del><a href= {{ url_for('basket_status', item_id = goodie.id) }} style="color:black; text-decoration: none;">{{ goodie.item.upper() }}</a></del></div>
                     
                 {% else %}
-                <div class="panel-body text-left bg-success border-success" style="font-family: 'Major Mono Display', monospace;"><del><a href= {{ url_for('basket_status', item_id = goodie.id) }} style="color:black; text-decoration: none;">{{ goodie.item.upper() }}({{ goodie.quantity }})</a><button type="button" class="btn btn-success btn-xs btn-right" data-toggle="collapse" data-target="#" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button></del></div>
+                <div class="panel-body text-left bg-success border-success" style="font-family: 'Major Mono Display', monospace;"><del><a href= {{ url_for('basket_status', item_id = goodie.id) }} style="color:black; text-decoration: none;">{{ goodie.item.upper() }}({{ goodie.quantity }})</a></del></div>
             {% endif %}
     {% endfor %}
     {% endif %}
