@@ -11,7 +11,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href= {{ url_for('add_new_item') }} ><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add Item</a></li>
-                        <li><a href= {{ url_for('modify') }}><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Modify Item</a></li>
+                        <li><a href= "#"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Modify Item</a></li>
                         <li class="divider"></li>
                         <li><a href= {{ url_for('delete_all_items') }}><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete All Items</a></li>
                     </ul>
@@ -29,15 +29,14 @@
                 <div class="panel-body text-left" style="font-family: 'Major Mono Display', monospace; border-bottom-width: 1px;" ><a href={{ url_for('basket_status', item_id = post.id) }} class="text-left" style="color:black; text-decoration: none;">{{ post.item.upper() }}</a><button type="button" class="btn btn-warning btn-xs btn-right" data-toggle="collapse" data-target="#{{ post.id }}" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button>
                 </div>
                 <div id="{{ post.id }}" class="collapse panel-body text-center" style="background-color:lightgray; border-radius:3px;">
-                    <form action="" method="POST">
+                    <form action="/modify/{{ post.id }}" method="POST">
                             <div class="form-row align-items-center">
-                                    {{ form.hidden_tag() }}
                                     <div class="col-auto">
-                                        {{ form.item.label }}
-                                        {{ form.item(size=20) }}
+                                        <label>Item</label>
+                                        {{ form.item(size=20, value=post.item) }}
                                         {{ form.quantity.label }}
                                         {{ form.quantity }}
-                                        {{ form.submit() }}
+                                       {{ form.submit() }}
                                     </div>
                                   </div>
  

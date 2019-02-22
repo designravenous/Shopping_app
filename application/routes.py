@@ -108,9 +108,13 @@ def delete_all_items():
     db.session.commit()
     return redirect(url_for('index'))
 
-@app.route('/modify', methods=['GET', 'POST'])
-def modify():
-    shopping_items = ShoppingItems.query.filter_by(user_id=current_user.id)
-    user = current_user.username
-    return render_template('modify.html', title='Modify', shopping_items=shopping_items, user=user)
+@app.route('/modify/<item_id>', methods=['GET', 'POST'])
+def modify(item_id):
+    form = Modify_item()
+    nummer = int(item_id)
+    db_item = ShoppingItems.query.get(nummer)
+    db_item.item = form.item.data
+    db_item.quantity = form.quantity.data
+    db.session.commit()
+    return redirect(url_for('index'))
 
