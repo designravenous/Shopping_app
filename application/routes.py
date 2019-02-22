@@ -1,6 +1,6 @@
 from application import app, bootstrap, db
 from flask import render_template, url_for, flash, redirect, request
-from application.forms import LoginForms, RegistrationForm, Add_Item_Form
+from application.forms import LoginForms, RegistrationForm, Add_Item_Form, Modify_item
 from application.models import User, ShoppingItems
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -11,6 +11,7 @@ from werkzeug.urls import url_parse
 @login_required
 def index():
     fetch_id = current_user.id
+    form = Modify_item()
     user = current_user.username
     added_to_chart = []
     not_added = []
@@ -20,8 +21,9 @@ def index():
             added_to_chart.append(p)
         else:
             not_added.append(p)
+    
 
-    return render_template('index.html', added_to_chart=added_to_chart, not_added=not_added,user=user)
+    return render_template('index.html', added_to_chart=added_to_chart, not_added=not_added,user=user, form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
