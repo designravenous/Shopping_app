@@ -9,7 +9,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-ENV FLASK_APP=shopping_app.py
+ENV FLASK_APP=shopping_app.py  &&\ 
+FLASK_ENV=development
 
 EXPOSE 5000
 
