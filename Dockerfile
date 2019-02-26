@@ -11,6 +11,8 @@ COPY . .
 
 ENV FLASK_APP=shopping_app.py 
 
+RUN chmod 777 app.db
+
 EXPOSE 5000
 
 CMD ["flask", "run", "--host=0.0.0.0"]
