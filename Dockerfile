@@ -1,6 +1,7 @@
 FROM python:3
 LABEL description="This is Python image working for flask applications"
 MAINTAINER Peter Holgersson <petersholgersson@gmail.com>
+USER sqlite
 WORKDIR ./
 
 COPY requirements.txt ./
