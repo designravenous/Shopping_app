@@ -2,7 +2,10 @@ FROM python:3
 LABEL description="This is Python image working for flask applications"
 MAINTAINER Peter Holgersson <petersholgersson@gmail.com>
 
-WORKDIR ./
+RUN groupadd -g 999 appuser && \
+    useradd -r -u 999 -g appuser appuser
+USER appuser
+
 
 COPY requirements.txt ./
 
