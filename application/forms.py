@@ -31,6 +31,6 @@ class Add_Item_Form(FlaskForm):
     quantity = SelectField('Quantity:', choices=[(1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9), (10,10)], coerce=int, default=1)
 
 class Modify_item(FlaskForm):
-    item = StringField('Item', validators=[DataRequired()])
+    item = StringField('Item', validators=[DataRequired()], render_kw={'class':'text-center'})
     quantity = SelectField('Quantity:', choices=[(1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9), (10,10)], coerce=int)
     submit = SubmitField('Update', render_kw={'class':'btn btn-primary btn-xs'})

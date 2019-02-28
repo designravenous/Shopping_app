@@ -27,7 +27,7 @@
             {% if post.quantity == 1 %}
                 <div class="panel-body text-left" style="font-family: 'Major Mono Display', monospace; border-bottom-width: 1px;" ><a href={{ url_for('basket_status', item_id = post.id) }} class="text-left" style="color:black; text-decoration: none;">{{ post.item.upper() }}</a><button type="button" class="btn btn-warning btn-xs btn-right" data-toggle="collapse" data-target="#{{ post.id }}" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button>
                 </div>
-                <div id="{{ post.id }}" class="collapse panel-body text-center" style="background-color:lightgray; border-radius:3px;">
+                <div id="{{ post.id }}" class="collapse panel-body text-center bg-warning" >
                     <form action="/modify/{{ post.id }}" method="POST">
                             <div class="form-row align-items-center">
                                     <div class="col-auto">
@@ -44,7 +44,7 @@
             {% else %}
             <div class="panel-body text-left" style="font-family: 'Major Mono Display', monospace; border-bottom-width: 1px;" ><a href={{ url_for('basket_status', item_id = post.id) }} class="text-left" style="color:black; text-decoration: none;">{{ post.item.upper() }}({{ post.quantity }})</a><button type="button" class="btn btn-warning btn-xs btn-right" data-toggle="collapse" data-target="#{{ post.id }}" style="float:right; margin-right:3%;"><span class="glyphicon glyphicon-pencil"></span></button>
             </div>
-            <div id="{{ post.id }}" class="collapse panel-body text-center" style="background-color:lightgray; border-radius:3px;">
+            <div id="{{ post.id }}" class="collapse panel-body text-center bg-warning" >
                 <form action="/modify/{{ post.id }}" method="POST">
                     <div class="form-row align-items-center">
                             <div class="col-auto">
