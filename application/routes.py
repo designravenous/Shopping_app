@@ -118,3 +118,20 @@ def modify(item_id):
     db.session.commit()
     return redirect(url_for('index'))
 
+@app.route('/delete_user')
+@login_required
+def delete_user():
+    users_id = current_user.id
+    user_name = current_user.username
+    user_in_db = User.query.get(users_id)
+    db.session.delete(user_in_db)
+    db.session.commit()
+    flash("User Account for: {}, have been deleted".format(user_name))
+    return redirect(url_for('login'))
+
+@app.route('/profile')
+@login_required
+def profile():
+    user = current_user.username
+    email = current_user.email
+    return render_template('profile.html', user=user, title="Profile", email=email)
