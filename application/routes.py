@@ -4,6 +4,7 @@ from application.forms import LoginForms, RegistrationForm, Add_Item_Form, Modif
 from application.models import User, ShoppingItems
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
+from datetime import datetime
 
 
 @app.route('/')
@@ -37,6 +38,8 @@ def login():
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
+        user.last_logged_on = datetime.utcnow()
+        db.session.commit()
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
@@ -137,4 +140,5 @@ def delete_user():
 def profile():
     user = current_user.username
     email = current_user.email
-    return render_template('profile.html', user=user, title="Profile", email=email)
+    last_logged_on = current_user.last_logged_on
+    return render_template('profile.html', user=user, title="Profile", email=email, last_logged_on=last_logged_on)
