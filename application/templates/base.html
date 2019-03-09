@@ -2,6 +2,11 @@
 {% block title %}
     {% if title %}{{ title }}{% else %}ShoppingApp{% endif %}
 {% endblock %}
+{% block styles %}
+    {{ super() }}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+{% endblock %}
 {% block navbar %}
 {% if current_user.is_anonymous %}
 {% else %}
