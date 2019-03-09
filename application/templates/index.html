@@ -19,7 +19,7 @@
         </br>
         {% if not_added|length >= 1 %}
         <div class="panel panel-primary">
-            <div class="panel-heading">Items</div>
+            <div class="panel-heading" style="font-family: 'Montserrat', sans-serif;">Items</div>
         </div>
         {% endif %}
         {% if not_added|length >= 1 or added_to_chart|length >= 1%}
@@ -65,7 +65,7 @@
         {% if added_to_chart|length >= 1 %}
         <br>
         <div class="panel panel-success">
-            <div class="panel-heading">Already Added:</div>
+            <div class="panel-heading" style="font-family: 'Montserrat', sans-serif;">Added to Chart:</div>
             {% for goodie in added_to_chart %}
                 {% if goodie.quantity == 1 %}
                     
