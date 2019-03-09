@@ -1,19 +1,16 @@
 {% extends "base.html" %}
 {% block app_content %}
 <div class="panel panel-default">
-    <div class="panel-heading"><b>User Information</b></div>
+    <div class="panel-heading" style="font-family: 'Montserrat', sans-serif;"><b>User Information</b></div>
     <div class="panel-body">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Username: <b>{{ user }}</b></li>
             <li class="list-group-item">Email: <b>{{ email }}</b></li>
         </ul>
     </div>
-    <a data-toggle="collapse" data-target="#deletebutton"><div class="panel-body text-center bg-danger" >
-        <h6>Would you like to delete account?</h6>
-    </div></a>
-    <div id="deletebutton" class="collapse panel-body text-center bg-danger" >
-        <a href="{{ url_for('delete_user') }}" type="button" class="btn btn-warning btn btn-center">Delete Account</a>
-    </div>
+   <div class="panel-body text-center bg-danger" style="font-family: 'Montserrat', sans-serif;" ><a href="#" class="text-left" style="color:black; text-decoration: none;"><b>Delete Account?</b></a><button type="button" class="btn btn-danger btn-xs btn-right" data-toggle="collapse" data-target="#deleteUser" style="float:right;"><i class="material-icons" style="font-size:15px;">delete_forever</i></button></div>
+   <div id="deleteUser" class="collapse panel-body text-center bg-danger" >
+       <a href="{{ url_for('delete_user') }}" type="button" class="btn btn-danger btn-center" >Delete User Permanently</a></div>
     <div class="panel-footer"></div>
 </div>
 {% endblock %}
