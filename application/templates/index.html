@@ -3,8 +3,8 @@
 {% block app_content %}
 <div class="container">
         <div class="row">
-                <h2 class="visible-md visible-lg">SHOPPING BAG</h2>
-                <p class="visible-md visible-lg col-xs-3"><small>All Content Owned by DesignRavenous</small></p>
+                <h2 class="visible-md visible-lg" style="font-family: 'Montserrat', sans-serif;">SHOPPING BAG</h2>
+                <p class="visible-md visible-lg col-xs-3" style="font-family: 'Montserrat', sans-serif;"><small>All Content Owned by DesignRavenous</small></p>
                 <div class="dropdown pull-right">
                     <a class="dropdown-toggle btn btn-default " data-toggle="dropdown">
                         <span class="glyphicon glyphicon-cog"></span>&nbsp; <span class="caret"></span>
@@ -32,6 +32,7 @@
                             <div class="form-row align-items-center">
                                     <div class="col-auto">
                                         <label>Item</label>
+                                        {{ form.csrf_token }}
                                         {{ form.item(size=10, value=post.item) }}
                                         {{ form.quantity.label }}
                                         {{ form.quantity }}
@@ -49,6 +50,7 @@
                     <div class="form-row align-items-center">
                             <div class="col-auto">
                                 <label>Item</label>
+                                {{ form.csrf_token }}
                                 {{ form.item(size=10, value=post.item) }}
                                 {{ form.quantity.label }}
                                 {{ form.quantity }}

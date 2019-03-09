@@ -6,11 +6,11 @@
             <div class="col-xs-12">
                     <h1>Sign In</h1>
 <form action="" method="POST" novalidate>
-    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
     <p>
-        {{ form.username.label }}<br>
-        {{ form.username(size=32) }}<br>
-        {% for error in form.username.errors %}
+        {{ form.email.label }}<br>
+        {{ form.email(size=32) }}<br>
+        {% for error in form.email.errors %}
         <span style="color:red">[{{ error }}]</span>
         {% endfor %}
     </p>

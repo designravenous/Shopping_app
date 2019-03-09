@@ -2,7 +2,7 @@
 {% block app_content %}
 <div class="form-group col-xs-12"><h3>Add Items to Shoppingbag:</h3></div>
 <form action="" method="POST">
-    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
     <p>
         <div class="form-group col-xs-12">
         {{ form.item.label }}<br>
