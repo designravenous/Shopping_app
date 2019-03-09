@@ -124,6 +124,9 @@ def delete_user():
     users_id = current_user.id
     user_name = current_user.username
     user_in_db = User.query.get(users_id)
+    items_in_bag = ShoppingItems.query.filter_by(user_id=current_user.id)
+    for posession in items_in_bag:
+        db.session.delete(posession)
     db.session.delete(user_in_db)
     db.session.commit()
     flash("User Account for: {}, have been deleted".format(user_name))
