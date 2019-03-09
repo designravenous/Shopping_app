@@ -7,6 +7,7 @@
             <li class="list-group-item">Username: <b>{{ user }}</b></li>
             <li class="list-group-item">Email: <b>{{ email }}</b></li>
             {% if last_logged_on != none %}<li class="list-group-item">Last Logged On: <b>{{ last_logged_on }}</b></li>{% endif %}
+            {% if count_logged_in != none %}<li class="list-group-item">Amounts Of Visits: <b>{{ count_logged_in}}</b></li>{% endif %}
         </ul>
     </div>
    <div class="panel-body text-center bg-danger" style="font-family: 'Montserrat', sans-serif;" ><a href="#" class="text-left" style="color:black; text-decoration: none;"><b>Delete Account?</b></a><button type="button" class="btn btn-danger btn-xs btn-right" data-toggle="collapse" data-target="#deleteUser" style="float:right;"><i class="material-icons" style="font-size:15px;">delete_forever</i></button></div>

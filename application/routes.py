@@ -38,6 +38,10 @@ def login():
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
+        if user.count_logged_in is None:
+            user.count_logged_in = 1
+        else:
+            user.count_logged_in += 1
         user.last_logged_on = datetime.utcnow()
         db.session.commit()
         if not next_page or url_parse(next_page).netloc != '':
@@ -141,4 +145,5 @@ def profile():
     user = current_user.username
     email = current_user.email
     last_logged_on = current_user.last_logged_on
-    return render_template('profile.html', user=user, title="Profile", email=email, last_logged_on=last_logged_on)
+    count_logged_in = current_user.count_logged_in
+    return render_template('profile.html', user=user, title="Profile", email=email, last_logged_on=last_logged_on, count_logged_in=count_logged_in)
