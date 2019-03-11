@@ -4,16 +4,16 @@ from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, op
 from application.models import User
 
 class LoginForms(FlaskForm):
-    email = StringField('Email', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()], render_kw={'placeholder':'Enter Email Address'})
+    password = PasswordField('Password', validators=[DataRequired()], render_kw={'placeholder':'Enter Password'})
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login', render_kw={'class':'btn btn-primary'})
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    username = StringField('Username', validators=[DataRequired()], render_kw={'placeholder':'Username'})
+    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={'placeholder':'Email Address'})
+    password = PasswordField('Password', validators=[DataRequired()],render_kw={'placeholder':'Password'})
+    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')], render_kw={'placeholder':'Enter Password Again'})
     submit = SubmitField('Register', render_kw={'class':'btn btn-primary'})
 
     def validate_username(self, username):
@@ -27,7 +27,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Account with that email address is already created')
 
 class Add_Item_Form(FlaskForm):
-    item = StringField('New Item:', validators=[DataRequired()])
+    item = StringField('New Item:', validators=[DataRequired()], render_kw={'placeholder':'Enter Item'})
     quantity = SelectField('Quantity:', choices=[(1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9), (10,10)], coerce=int, default=1)
 
 class Modify_item(FlaskForm):
