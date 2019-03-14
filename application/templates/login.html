@@ -5,7 +5,7 @@
     <div class="row">
             <div class="col-xs-12">
                     <h1>Sign In</h1>
-<form action="" method="POST" novalidate>
+<form action="" method="POST" novalidate style="font-family: 'Montserrat', sans-serif;">
     {{ form.csrf_token }}
     <p>
         {{ form.email.label }}<br>
@@ -24,7 +24,8 @@
     
     <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
     {{ form.submit() }}<br><br>
-    <p>New User? <a href="{{ url_for('register') }}">Register Today!</a></p>
+    <p>No Account? <a href="{{ url_for('register') }}">Create One!</a></p>
+    <p><a href="{{ url_for('reset_user_password') }}">Forgot my password</a></p>
     
 </form>
 </div>
