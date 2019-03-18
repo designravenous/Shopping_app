@@ -6,7 +6,6 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item"><span style="font-family: 'Montserrat', sans-serif;" >Username: </span><b>{{ user }}</b></li>
             <li class="list-group-item"><span style="font-family: 'Montserrat', sans-serif;" >Email: </span><b>{{ email }}</b></li>
-            {% if last_logged_on != none %}<li class="list-group-item"><span style="font-family: 'Montserrat', sans-serif;" >Last Logged On: </span><b>{{ last_logged_on }}</b></li>{% endif %}
             {% if count_logged_in != none %}<li class="list-group-item"><span style="font-family: 'Montserrat', sans-serif;" >Amounts Of Visits: </span><b>{{ count_logged_in}}</b></li>{% endif %}
         </ul>
     </div>

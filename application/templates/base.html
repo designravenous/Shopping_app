@@ -6,6 +6,7 @@
     {{ super() }}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 {% endblock %}
 {% block navbar %}
 {% if current_user.is_anonymous %}
@@ -24,7 +25,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" style="font-family: 'Montserrat', sans-serif;">ShoppingApp</a>
+            <a class="navbar-brand" href="#" style="font-family: 'Montserrat', sans-serif;">Remember2Buy</a>
           </div>
       
           <!-- Collect the nav links, forms, and other content for toggling -->
