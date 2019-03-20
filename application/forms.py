@@ -35,6 +35,6 @@ class Modify_item(FlaskForm):
     quantity = SelectField('Quantity:', choices=[(1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9), (10,10)], coerce=int)
     submit = SubmitField('Update', render_kw={'class':'btn btn-primary btn-xs'})
 
-class ResetPasswordForm(FlaskForm):
+class RequestPasswordForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()], render_kw={'placeholder':'Enter Email'})
     submit = SubmitField('Request New Password', render_kw={'class':'btn btn-primary'})

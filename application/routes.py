@@ -1,6 +1,6 @@
 from application import app, bootstrap, db
 from flask import render_template, url_for, flash, redirect, request
-from application.forms import LoginForms, RegistrationForm, Add_Item_Form, Modify_item, ResetPasswordForm
+from application.forms import LoginForms, RegistrationForm, Add_Item_Form, Modify_item, RequestPasswordForm
 from application.models import User, ShoppingItems
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -149,22 +149,22 @@ def profile():
     count_logged_in = current_user.count_logged_in
     return render_template('profile.html', user=user, title="Profile", email=email, last_logged_on=last_logged_on, count_logged_in=count_logged_in)
 
-@app.route('/reset_user_password', methods=['GET', 'POST'])
-def reset_user_password():
+@app.route('/request_user_password', methods=['GET', 'POST'])
+def request_user_password():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
-    form = ResetPasswordForm()
+    form = RequestPasswordForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
-            sub = "Subject for email"
-            html = '<h1>the HTML</h1>'
-            sender = '******@gmail.com'
-            body = "The body"
+            sub = "[Remember2Buy] Reset Password"
+            html = render_template('email/reset_password.html', user=user)
+            sender = app.config['ADMINS'][0]
+            body = render_template('email/reset_password.txt', user=user)
             recipients = [user.email]
             send_email(sub, sender,recipients,body, html)
             flash('Message sent to {}'.format(user.email))
             return redirect('index')
         else:
-            flash('Check Password, email not found')
-    return render_template('reset_password.html', form=form)
+            flash('Unable To Send Instructions, Email Not Found')
+    return render_template('request_password.html', form=form)
