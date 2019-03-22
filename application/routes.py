@@ -1,6 +1,6 @@
 from application import app, bootstrap, db
 from flask import render_template, url_for, flash, redirect, request
-from application.forms import LoginForms, RegistrationForm, Add_Item_Form, Modify_item, RequestPasswordForm
+from application.forms import LoginForms, RegistrationForm, Add_Item_Form, Modify_item, RequestPasswordForm, Reset_PasswordForm
 from application.models import User, ShoppingItems
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -168,3 +168,8 @@ def request_user_password():
         else:
             flash('Unable To Send Instructions, Email Not Found')
     return render_template('request_password.html', form=form)
+
+@app.route('/reset_user_password', methods=['GET', 'POST'])
+def reset_user_password():
+    form = Reset_PasswordForm()
+    return render_template('reset_password.html', form=form)

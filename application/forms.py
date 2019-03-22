@@ -38,3 +38,8 @@ class Modify_item(FlaskForm):
 class RequestPasswordForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()], render_kw={'placeholder':'Enter Email'})
     submit = SubmitField('Request New Password', render_kw={'class':'btn btn-primary'})
+
+class Reset_PasswordForm(FlaskForm):
+    password = StringField('Password', validators=[DataRequired()])
+    password2 = StringField('Verify Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password', render_kw={'class':'btn btn-primary'})
