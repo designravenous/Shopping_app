@@ -158,9 +158,10 @@ def request_user_password():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
             sub = "[Remember2Buy] Reset Password"
-            html = render_template('email/reset_password.html', user=user)
+            token = "Test Token"
+            html = render_template('email/reset_password.html', token=token,user=user)
             sender = app.config['ADMINS'][0]
-            body = render_template('email/reset_password.txt', user=user)
+            body = render_template('email/reset_password.txt', user=user, token=token)
             recipients = [user.email]
             send_email(sub, sender,recipients,body, html)
             flash('Message sent to {}'.format(user.email))
@@ -169,7 +170,10 @@ def request_user_password():
             flash('Unable To Send Instructions, Email Not Found')
     return render_template('request_password.html', form=form)
 
-@app.route('/reset_user_password', methods=['GET', 'POST'])
-def reset_user_password():
+@app.route('/reset_user_password/<token>', methods=['GET', 'POST'])
+def reset_user_password(token):
     form = Reset_PasswordForm()
+    token = token
+    if form.validate_on_submit():
+        return "success %s" % (token)
     return render_template('reset_password.html', form=form)
