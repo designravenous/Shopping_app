@@ -81,7 +81,7 @@
     </div>    </div>
     <h1 class="col-xs-4"></h1><a href={{ url_for('delete_added_items') }} type="button" class="col-xs-4 btn btn-success" style="font-family: 'Montserrat', sans-serif;"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete</a><h1 class="col-xs-4"></h1>
     {% else %}
-    <h4>Add Groceries To Your ShoppingBag </h4>
+    <h4><a href="{{ url_for('add_new_item') }}"><u>Add</u></a> Groceries To Your ShoppingBag </h4>
     {% endif %}
     </div>
 </div>

@@ -1,12 +1,14 @@
 {% extends 'bootstrap/base.html' %}
 {% block title %}
-    {% if title %}{{ title }}{% else %}ShoppingApp{% endif %}
+    {% if title %}{{ title }}{% else %}Remember2Buy{% endif %}
 {% endblock %}
 {% block styles %}
     {{ super() }}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 {% endblock %}
 {% block navbar %}
 {% if current_user.is_anonymous %}

@@ -158,7 +158,7 @@ def request_user_password():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
             sub = "[Remember2Buy] Reset Password"
-            token = "Test Token"
+            token = User.get_reset_password_token(user)
             html = render_template('email/reset_password.html', token=token,user=user)
             sender = app.config['ADMINS'][0]
             body = render_template('email/reset_password.txt', user=user, token=token)
