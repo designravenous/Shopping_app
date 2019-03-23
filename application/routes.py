@@ -48,7 +48,7 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
-    return render_template('login.html', title='Sign In', form=form)
+    return render_template('login.html', title='Remember2Buy - Sign In', form=form)
 
 @app.route('/logout')
 def logout():
@@ -172,8 +172,17 @@ def request_user_password():
 
 @app.route('/reset_user_password/<token>', methods=['GET', 'POST'])
 def reset_user_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('login'))
+    token_verification = User.verify_reset_password_token(token)
+    if not token_verification:
+        flash('Incorrect Token, Security Matter Have been Logged')
+        return redirect(url_for('login'))
     form = Reset_PasswordForm()
     token = token
     if form.validate_on_submit():
-        return "success %s" % (token)
+        flash('Password For {},  Have Been Reset'.format(token_verification.email))
+        token_verification.set_hash(form.password.data)
+        db.session.commit()
+        return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
